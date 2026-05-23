@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lalat Prank</title>
+
+<style>
+body{
+    margin:0;
+    overflow:hidden;
+    background:white;
+    cursor:none;
+}
+
+.fly{
+    position:absolute;
+    font-size:32px;
+    user-select:none;
+    pointer-events:none;
+    transition: transform 0.1s linear;
+}
+
+.text{
+    position:fixed;
+    top:20px;
+    left:20px;
+    background:black;
+    color:white;
+    padding:12px 18px;
+    border-radius:12px;
+    font-family:Arial;
+    z-index:9999;
+}
+</style>
+</head>
+
+<body>
+
+<div class="text">
+🪰 Banyak lalat aktif...
+</div>
+
+<script>
+const totalFlies = 40;
+
+for(let i=0;i<totalFlies;i++){
+
+    const fly = document.createElement("div");
+    fly.classList.add("fly");
+    fly.innerHTML = "🪰";
+
+    document.body.appendChild(fly);
+
+    let x = Math.random() * window.innerWidth;
+    let y = Math.random() * window.innerHeight;
+
+    let dx = (Math.random() - 0.5) * 8;
+    let dy = (Math.random() - 0.5) * 8;
+
+    function animate(){
+
+        x += dx;
+        y += dy;
+
+        if(x < 0 || x > window.innerWidth){
+            dx *= -1;
+        }
+
+        if(y < 0 || y > window.innerHeight){
+            dy *= -1;
+        }
+
+        fly.style.left = x + "px";
+        fly.style.top = y + "px";
+
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+}
+</script>
+
+</body>
+</html>
